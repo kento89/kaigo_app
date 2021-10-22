@@ -4,7 +4,7 @@ describe 'Root' do
   specify '画面の表示' do
     visit '/'
     expect(page).to have_css('h1', text: '介護コミュニティ')
-    expect(page).to have_title 'Home | kaigo app'
+    expect(page).to have_title 'kaigo app'
   end
 end
 
@@ -12,7 +12,7 @@ describe 'Home' do
   specify '画面の表示' do
     visit '/static_pages/home'
     expect(page).to have_css('h1', text: '介護コミュニティ')
-    expect(page).to have_title 'Home | kaigo app'
+    expect(page).to have_title 'kaigo app'
   end
 end
 
