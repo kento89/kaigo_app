@@ -38,4 +38,5 @@ RSpec.describe 'Access to static_pages', type: :request do
       expect(response.body).to include 'Contact | kaigo app'
     end
   end
+  
 end
