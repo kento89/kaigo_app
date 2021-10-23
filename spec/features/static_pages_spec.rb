@@ -1,33 +1,41 @@
 require 'rails_helper'
 
-describe 'Root' do
-  before {gets root_path}
-  specify '画面の表示' do
-    expect(page).to have_css('h1', text: '介護コミュニティ')
-    expect(page).to have_title 'kaigo app'
+RSpec.describe 'Access to static_pages', type: :request do
+  context 'GET #home' do
+    before { get root_path }
+    it 'responds successfully' do
+      expect(response).to have_http_status 200
+    end
+    it "has title 'kaigo app'" do
+      expect(response.body).to include 'kaigo app'
+      expect(response.body).to_not include '| kaigo app'
+    end
   end
-end
-
-describe 'Help' do
-  before {gets help_path}
-  specify '画面の表示' do
-    expect(page).to have_css('h1', text: '使い方')
-    expect(page).to have_title 'Help | kaigo app'
+  context 'GET #help' do
+    before { get help_path }
+    it 'responds successfully' do
+      expect(response).to have_http_status 200
+    end
+    it "has title 'Home | kaigo app'" do
+      expect(response.body).to include 'Help | kaigo app'
+    end
   end
-end
-
-describe 'About' do
-  before {gets about_path}
-  specify '画面の表示' do
-    expect(page).to have_css('h1', text: '介護コミュニティに関して')
-    expect(page).to have_title 'About | kaigo app'
+  context 'GET #about' do
+    before { get about_path } 
+    it 'responds successfully' do
+      expect(response).to have_http_status 200
+    end
+    it "has title 'Home | kaigo app'" do
+      expect(response.body).to include 'About | kaigo app'
+    end
   end
-end
-
-describe 'Contact' do
-  before {get contact_path}
-  specify '画面の表示' do
-    expect(page).to have_css('h1', text: '連絡する')
-    expect(page).to have_title 'Contact | kaigo app'
+  context 'GET #contact' do
+    before { get contact_path }
+    it 'responds successfully' do
+      expect(response).to have_http_status 200
+    end
+    it "has title 'Contact | kaigo app'" do
+      expect(response.body).to include 'Contact | kaigo app'
+    end
   end
 end
